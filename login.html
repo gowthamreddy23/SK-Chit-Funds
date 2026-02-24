@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | SK Chit Funds</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#004a99",
+                        backgroundLight: "#f5f7f8"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-backgroundLight min-h-screen flex items-center justify-center p-6">
+
+<div class="bg-white w-full max-w-md rounded-2xl shadow-2xl p-10">
+
+    <!-- Heading -->
+    <div class="text-center mb-8">
+        <h2 class="text-3xl font-extrabold text-primary">Customer Login</h2>
+        <p class="text-slate-500 mt-2 text-sm">
+            Access your chit fund account
+        </p>
+    </div>
+
+    <!-- ERROR BLOCK -->
+    <div id="errorBlock"
+         class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-6">
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="space-y-6">
+
+        <!-- Username / Mobile -->
+        <div>
+            <label class="block text-sm font-semibold mb-2">
+                Username / Mobile
+            </label>
+            <input type="text" id="username"
+                class="w-full px-4 py-3 border rounded-lg focus:ring-primary focus:border-primary"
+                placeholder="Enter your username or mobile">
+        </div>
+
+        <!-- Password -->
+        <div>
+            <label class="block text-sm font-semibold mb-2">
+                Password
+            </label>
+            <div class="relative">
+                <input type="password" id="password"
+                    class="w-full px-4 py-3 border rounded-lg focus:ring-primary focus:border-primary"
+                    placeholder="Enter your password">
+                <span onclick="togglePassword()"
+                    class="absolute right-4 top-3 cursor-pointer text-sm text-primary font-semibold">
+                    Show
+                </span>
+            </div>
+        </div>
+
+        <!-- Remember -->
+        <div class="flex items-center justify-between text-sm">
+            <label class="flex items-center gap-2">
+                <input type="checkbox" class="rounded">
+                Remember me
+            </label>
+            <a href="#" class="text-primary font-semibold hover:underline">
+                Forgot password?
+            </a>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit"
+            class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary/90 transition">
+            Login
+        </button>
+
+        <div class="text-center mt-4 text-sm">
+            Don't have an account?
+            <a href="registration.html"
+               class="text-primary font-bold hover:underline">
+                Register Here
+            </a>
+        </div>
+
+    </form>
+</div>
+
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let username = document.getElementById("username").value.trim();
+    let password = document.getElementById("password").value.trim();
+
+    let errorBlock = document.getElementById("errorBlock");
+    errorBlock.classList.add("hidden");
+    errorBlock.innerHTML = "";
+
+    let errors = [];
+
+    // Empty validation
+    if (!username || !password) {
+        errors.push("All fields must be filled.");
+    }
+
+    // Demo login check (Frontend only)
+    // Example: username = admin , password = 123456
+    if (username && password) {
+        if (username !== "admin" || password !== "123456") {
+            errors.push("Invalid username or password.");
+        }
+    }
+
+    if (errors.length > 0) {
+        errorBlock.classList.remove("hidden");
+        errorBlock.innerHTML = errors.join("<br>");
+        return;
+    }
+
+    // Success -> redirect to dashboard
+    window.location.href = "Customer Dashboard/dashboard.html";
+});
+
+function togglePassword() {
+    let pass = document.getElementById("password");
+    pass.type = pass.type === "password" ? "text" : "password";
+}
+</script>
+
+</body>
+</html>
