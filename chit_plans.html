@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chit Plans | SK Chit Funds</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: "#004a99",
+backgroundLight: "#f5f7f8"
+}
+}
+}
+}
+</script>
+</head>
+
+<body class="bg-backgroundLight text-slate-900">
+
+<!-- HEADER -->
+<section class="bg-white py-14 text-center">
+<h1 class="text-4xl font-extrabold mb-4">
+Our <span class="text-primary">Chit Plans</span>
+</h1>
+<p class="text-slate-600">Choose the plan that fits your savings goal.</p>
+</section>
+
+<div class="max-w-6xl mx-auto px-6 py-16 space-y-20">
+
+<!-- ₹5000 PLAN -->
+<div>
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-3xl font-bold text-primary">
+₹5,000 Chit Plan (21 Months)
+</h2>
+
+<button onclick="joinPlan('5000 Plan')"
+class="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary/90">
+Join Now
+</button>
+</div>
+
+<div class="overflow-x-auto bg-white rounded-xl shadow">
+<table class="w-full text-sm text-center border">
+<thead class="bg-primary text-white">
+<tr>
+<th class="py-3">Sl.No</th>
+<th>Month</th>
+<th>Amount</th>
+</tr>
+</thead>
+<tbody id="plan5000Table"></tbody>
+</table>
+</div>
+
+<div class="mt-6 bg-blue-50 p-4 rounded-lg">
+<p><strong>Note:</strong></p>
+<p>Before lifting chit – ₹5,000</p>
+<p>After lifting chit – ₹6,000</p>
+</div>
+</div>
+
+
+<!-- ₹10000 PLAN -->
+<div>
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-3xl font-bold text-primary">
+₹10,000 Chit Plan (11 Months)
+</h2>
+
+<button onclick="joinPlan('10000 Plan')"
+class="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary/90">
+Join Now
+</button>
+</div>
+
+<div class="overflow-x-auto bg-white rounded-xl shadow">
+<table class="w-full text-sm text-center border">
+<thead class="bg-primary text-white">
+<tr>
+<th class="py-3">Sl.No</th>
+<th>Month</th>
+<th>Amount</th>
+</tr>
+</thead>
+<tbody id="plan10000Table"></tbody>
+</table>
+</div>
+
+<div class="mt-6 bg-blue-50 p-4 rounded-lg">
+<p><strong>Note:</strong></p>
+<p>Before lifting chit – ₹10,000</p>
+<p>After lifting chit – ₹12,000</p>
+</div>
+</div>
+
+</div>
+
+<script>
+
+// 🔹 Plan Data
+const plan5000 = [
+100000,101000,100000,102000,103000,104000,105000,106000,107000,
+108000,109000,110000,111000,112000,113000,114000,115000,
+116000,117000,118000,119000
+];
+
+const plan10000 = [
+100000,102000,100000,104000,106000,
+108000,110000,112000,114000,116000,118000
+];
+
+// 🔹 Generate Table Function
+function generateTable(planData, tableId, specialMonthLabel) {
+
+const tableBody = document.getElementById(tableId);
+
+planData.forEach((amount, index) => {
+
+let row = document.createElement("tr");
+
+let monthNumber = index + 1;
+
+if (monthNumber === 3) {
+row.classList.add("bg-green-100","font-semibold");
+}
+
+row.innerHTML = `
+<td class="py-2">${monthNumber}</td>
+<td>Month ${monthNumber} ${monthNumber===3 ? specialMonthLabel : ""}</td>
+<td>₹${amount.toLocaleString()}</td>
+`;
+
+tableBody.appendChild(row);
+
+});
+}
+
+// 🔹 Call Generator
+generateTable(plan5000,"plan5000Table","(Admin)");
+generateTable(plan10000,"plan10000Table","(Admin)");
+
+
+// 🔹 Join Logic
+function joinPlan(planName){
+
+localStorage.setItem("selectedPlan", planName);
+
+if(localStorage.getItem("isLoggedIn")==="true"){
+window.location.href="../dashboard/dashboard.html";
+}else{
+window.location.href="../login.html";
+}
+
+}
+
+</script>
+
+</body>
+</html>
