@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | SK Chit Funds</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: "#004a99",
+backgroundLight: "#f5f7f8"
+}
+}
+}
+}
+</script>
+</head>
+
+<body class="bg-backgroundLight text-slate-900">
+
+<!-- ================= HERO ================= -->
+<section class="bg-white py-16 text-center">
+<h1 class="text-4xl font-extrabold mb-4">
+Contact <span class="text-primary">SK Chit Funds</span>
+</h1>
+<p class="text-slate-600 max-w-2xl mx-auto">
+We are here to assist you. Reach out to us for any queries regarding our chit plans.
+</p>
+</section>
+
+<!-- ================= CONTACT SECTION ================= -->
+<section class="py-16">
+<div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+
+<!-- CONTACT INFO -->
+<div class="space-y-6">
+<h2 class="text-2xl font-bold text-primary mb-4">Get in Touch</h2>
+
+<div class="bg-white p-6 rounded-xl shadow">
+<p class="font-semibold">📍 Address</p>
+<p class="text-slate-600 mt-1">
+Plot No.16, Flat No.101, BVR Estates, Maruthi Hills Colony, Bandam Kommu, Ameenpur, Hyderabad.<br> PINCODE: 502032
+</p>
+</div>
+
+<div class="bg-white p-6 rounded-xl shadow">
+<p class="font-semibold">📞 Phone</p>
+<p class="text-slate-600 mt-1">
++91 9573551674
+</p>
+</div>
+
+<div class="bg-white p-6 rounded-xl shadow">
+<p class="font-semibold">✉ Email</p>
+<p class="text-slate-600 mt-1">
+skavitha061983@gmail.com
+</p>
+</div>
+
+</div>
+
+<!-- CONTACT FORM -->
+<div class="bg-white p-8 rounded-xl shadow">
+<h2 class="text-2xl font-bold text-primary mb-6">Send a Message</h2>
+
+<div id="errorBlock"
+class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-6">
+</div>
+
+<form id="contactForm" class="space-y-5">
+
+<div>
+<label class="block text-sm font-semibold mb-2">Full Name</label>
+<input type="text" id="name"
+class="w-full px-4 py-3 border rounded-lg focus:ring-primary focus:border-primary"
+placeholder="Enter your name">
+</div>
+
+<div>
+<label class="block text-sm font-semibold mb-2">Mobile Number</label>
+<input type="tel" id="mobile"
+class="w-full px-4 py-3 border rounded-lg focus:ring-primary focus:border-primary"
+placeholder="Enter mobile number">
+</div>
+
+<div>
+<label class="block text-sm font-semibold mb-2">Message</label>
+<textarea id="message"
+class="w-full px-4 py-3 border rounded-lg focus:ring-primary focus:border-primary"
+rows="4"
+placeholder="Type your message"></textarea>
+</div>
+
+<button type="submit"
+class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary/90 transition">
+Send Message
+</button>
+
+</form>
+</div>
+
+</div>
+</section>
+
+<!-- ================= GOOGLE MAP ================= -->
+<section class="py-16 bg-white">
+<div class="max-w-6xl mx-auto px-6">
+
+<h2 class="text-3xl font-bold text-center text-primary mb-8">
+Our Location
+</h2>
+
+<div class="bg-white p-6 rounded-2xl shadow-xl">
+    
+    <!-- Responsive Map Container -->
+    <div class="w-full h-96 rounded-xl overflow-hidden">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.9612872359107!2d78.31412997859009!3d17.509361340593653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9380bf28a5c7%3A0x6f7ebbb8786d0387!2sBVR%20Estate!5e0!3m2!1sen!2sus!4v1772036026868!5m2!1sen!2sus"
+            class="w-full h-full border-0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
+</div>
+
+</div>
+</section>
+<!-- ================= SUCCESS MODAL ================= -->
+<div id="successModal"
+class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+<div class="bg-white p-8 rounded-xl text-center max-w-sm w-full">
+<h3 class="text-2xl font-bold text-primary mb-4">
+Message Sent Successfully 🎉
+</h3>
+<p class="text-slate-600 mb-6">
+We will contact you shortly.
+</p>
+<button onclick="closeModal()"
+class="bg-primary text-white px-6 py-2 rounded-lg">
+OK
+</button>
+</div>
+</div>
+
+<script>
+
+document.getElementById("contactForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+let name = document.getElementById("name").value.trim();
+let mobile = document.getElementById("mobile").value.trim();
+let message = document.getElementById("message").value.trim();
+
+let errorBlock = document.getElementById("errorBlock");
+errorBlock.classList.add("hidden");
+errorBlock.innerHTML = "";
+
+let errors = [];
+
+if(!name || !mobile || !message){
+errors.push("All fields must be filled.");
+}
+
+if(mobile && !/^[0-9]{10}$/.test(mobile)){
+errors.push("Mobile number must be exactly 10 digits.");
+}
+
+if(errors.length > 0){
+errorBlock.classList.remove("hidden");
+errorBlock.innerHTML = errors.join("<br>");
+return;
+}
+
+document.getElementById("successModal").classList.remove("hidden");
+document.getElementById("successModal").classList.add("flex");
+
+});
+
+function closeModal(){
+document.getElementById("successModal").classList.add("hidden");
+}
+
+</script>
+</body>
+</html>
