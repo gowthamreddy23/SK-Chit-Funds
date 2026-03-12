@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Transactions | SK Chit Funds</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+theme:{
+extend:{
+colors:{
+primary:"#004a99",
+backgroundLight:"#f5f7f8"
+}
+}
+}
+}
+</script>
+
+</head>
+
+<body class="bg-backgroundLight min-h-screen flex">
+
+<!-- SIDEBAR -->
+<aside class="w-64 bg-primary text-white hidden md:flex flex-col p-6">
+
+<h2 class="text-2xl font-bold mb-10">SK Chit Funds</h2>
+
+<nav class="flex flex-col gap-4 text-sm font-semibold">
+
+<a href="dashboard.html" class="hover:bg-white/20 p-2 rounded">Dashboard</a>
+
+<a href="my_chits.html" class="hover:bg-white/20 p-2 rounded">My Chits</a>
+
+<a href="payments.html" class="hover:bg-white/20 p-2 rounded">Payments</a>
+
+<a href="transactions.html" class="bg-white text-primary p-2 rounded font-bold">
+Transactions
+</a>
+
+<a href="profile.html" class="hover:bg-white/20 p-2 rounded">Profile</a>
+
+</nav>
+
+<div class="mt-auto">
+<button onclick="logout()"
+class="w-full bg-white text-primary py-2 rounded-lg font-bold">
+Logout
+</button>
+</div>
+
+</aside>
+
+
+<!-- MAIN CONTENT -->
+<div class="flex-1 p-6 md:p-10">
+
+<h1 class="text-3xl font-bold text-primary mb-8">
+Transaction History
+</h1>
+
+<div class="bg-white rounded-xl shadow p-6">
+
+<h2 class="text-lg font-bold mb-4">
+All Transactions
+</h2>
+
+<div class="overflow-x-auto">
+
+<table class="w-full text-sm border">
+
+<thead class="bg-primary text-white">
+<tr>
+<th class="py-3 px-4">Date</th>
+<th class="px-4">Month</th>
+<th class="px-4">Amount</th>
+<th class="px-4">Status</th>
+</tr>
+</thead>
+
+<tbody id="transactionTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="../js/transactions.js"></script>
+
+</body>
+</html>
